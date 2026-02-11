@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>🌸 voor my Valentine? • vir my kriekie</title>
+  <!-- sweet fonts + smooth icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    /* reset + romantic atmosphere */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: radial-gradient(circle at 10% 30%, #ff9a9e, #f2789f, #b43b68);
+      font-family: 'Quicksand', 'Segoe UI', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow-x: hidden;
+      padding: 16px;
+      animation: bgPulse 12s infinite alternate;
+    }
+
+    @keyframes bgPulse {
+      0% { background: radial-gradient(circle at 10% 30%, #ff9a9e, #f2789f, #b43b68); }
+      100% { background: radial-gradient(circle at 90% 70%, #ffb6c1, #f65b7c, #9e2a55); }
+    }
+
+    /* main valentine card — super glossy */
+    .card {
+      background: rgba(255, 245, 245, 0.28);
+      backdrop-filter: blur(20px) saturate(180%);
+      -webkit-backdrop-filter: blur(20px) saturate(180%);
+      border-radius: 48px 20px 48px 20px;
+      padding: 32px 24px;
+      width: 100%;
+      max-width: 460px;
+      text-align: center;
+      box-shadow: 0 25px 50px -8px rgba(45, 8, 18, 0.4), inset 0 4px 8px rgba(255, 220, 240, 0.6);
+      border: 2px solid rgba(255, 220, 240, 0.5);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      color: white;
+      text-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      position: relative;
+      z-index: 50;
+    }
+
+    h1, h2 {
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      word-break: break-word;
+    }
+
+    h1 { font-size: 2.2rem; margin-bottom: 12px; }
+    h2 { font-size: 1.9rem; }
+
+    p {
+      font-weight: 600;
+      opacity: 0.95;
+      margin: 10px 0 18px;
+      font-size: 1.2rem;
+    }
+
+    /* modern selects – cute & clean */
+    select {
+      width: 100%;
+      padding: 16px 22px;
+      margin: 12px 0;
+      border: none;
+      border-radius: 60px;
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(4px);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #4a1e2b;
+      box-shadow: 0 8px 0 rgba(120, 20, 40, 0.2), inset 0 2px 5px white;
+      appearance: none;
+      border: 2px solid rgba(255, 190, 200, 0.7);
+      transition: 0.2s;
+      cursor: pointer;
+    }
+
+    select:hover {
+      background: white;
+      border-color: #ffc1cc;
+      transform: scale(1.02);
+    }
+
+    /* button love */
+    button {
+      width: 100%;
+      padding: 18px 16px;
+      border: none;
+      border-radius: 100px;
+      font-size: 1.3rem;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      background: white;
+      color: #b3204a;
+      border: 3px solid transparent;
+      box-shadow: 0 10px 0 #7a1f3a, 0 8px 20px rgba(0,0,0,0.2);
+      transition: 0.1s ease;
+      margin-top: 16px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    button:active {
+      transform: translateY(8px);
+      box-shadow: 0 2px 0 #7a1f3a, 0 8px 20px rgba(0,0,0,0.2);
+    }
+
+    .primary {
+      background: #fff44f;
+      color: #9e1030;
+    }
+
+    .danger {
+      background: #ffced9;
+      color: #a50034;
+      border: 2px solid #ff98a8;
+    }
+
+    /* JA / NEE buttons layout */
+    .buttons {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 32px;
+      flex-wrap: wrap;
+    }
+
+    .buttons button {
+      width: auto;
+      min-width: 140px;
+      flex: 1 1 130px;
+      font-size: 1.8rem;
+      padding: 18px 12px;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* extra floating poetry */
+    .floating-heart, .floating-sticker {
+      position: fixed;
+      pointer-events: none;
+      z-index: 15;
+      animation: floatUp 8s linear forwards;
+      font-size: 26px;
+      filter: drop-shadow(0 8px 6px rgba(0,0,0,0.2));
+    }
+
+    @keyframes floatUp {
+      0% { transform: translateY(110vh) scale(0.6); opacity: 0.8; }
+      100% { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+    }
+
+    .confetti-piece {
+      position: fixed;
+      width: 12px;
+      height: 22px;
+      background: #ffe485;
+      opacity: 0.9;
+      border-radius: 8px;
+      animation: confettiRain 2.8s ease-out forwards;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+      z-index: 999;
+    }
+
+    @keyframes confettiRain {
+      0% { transform: translateY(-20vh) rotate(0deg); opacity: 1; }
+      100% { transform: translateY(120vh) rotate(620deg); opacity: 0.6; }
+    }
+
+    /* special sticker for success */
+    .sticker-embrace {
+      font-size: 4rem;
+      margin: 8px 0 0;
+      animation: heartbeat 1.2s infinite;
+    }
+
+    @keyframes heartbeat {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+
+    /* image cute round */
+    .success-gif {
+      width: 100%;
+      border-radius: 40px 12px 40px 12px;
+      margin-top: 16px;
+      border: 6px solid rgba(255,255,240,0.7);
+      box-shadow: 0 12px 0 #731c34;
+    }
+
+    /* micro interaction */
+    .footnote {
+      margin-top: 30px;
+      font-size: 0.95rem;
+      opacity: 0.9;
+      font-style: italic;
+    }
+
+    /* mobile optimisation */
+    @media (max-width: 450px) {
+      .card { padding: 28px 20px; }
+      h1 { font-size: 1.9rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 💖 QUIZ CARD – 3 vrae, baie liefde -->
+  <div class="card" id="quizCard">
+    <span style="font-size: 52px;">🥨💘</span>
+    <h2 style="color: #fff0f5; margin-bottom: 4px;">my kriekie se toets</h2>
+    <p style="font-size: 1.3rem; font-weight: 700;">🫶 beantwoord elke vraag 🫶</p>
+
+    <select id="answer1">
+      <option value="" disabled selected>🎂 Wanneer is Millie se verjaarsdag?</option>
+      <option value="6 Julie">6 Julie</option>
+      <option value="16 Julie">16 Julie</option>
+      <option value="8 Junie">8 Junie</option>
+    </select>
+
+    <select id="answer2">
+      <option value="" disabled selected>⚽ wie is my gunsteling sokker speler?</option>
+      <option value="Messi">Messi</option>
+      <option value="Ronaldo">Ronaldo</option>
+      <option value="Neymar">Neymar</option>
+    </select>
+
+    <select id="answer3">
+      <option value="" disabled selected>🐑 wie is my liefie duifie skaapie poopie loopie?</option>
+      <option value="Kriekie">Kriekie</option>
+      <option value="Babie">Babie</option>
+      <option value="Poekie">Poekie</option>
+    </select>
+
+    <button class="primary" id="checkQuizBtn">
+      <span>✅</span> gaan aan, skat
+    </button>
+    <div class="footnote">💭 jy weet die antwoorde, my lief</div>
+  </div>
+
+  <!-- 💗 VALENTINE VRAAG – sal jy my wees? -->
+  <div class="card hidden" id="valentineCard">
+    <div style="font-size: 60px; line-height: 1;">🫂💌</div>
+    <h1 style="color: #fff2d7;">🌷 my kriekie,<br>sal jy my Valentine wees?</h1>
+    
+    <div class="buttons">
+      <button class="primary" id="yesBtn">💖 JA</button>
+      <button class="danger" id="noBtn">🙅🏻‍♀️ NEE</button>
+    </div>
+    <p style="margin-top: 24px;">⬅️ (die nee knoppie is sku 😘)</p>
+  </div>
+
+  <!-- 🎉 SUCCESS – sy het JA gesê! -->
+  <div class="card hidden" id="winCard">
+    <div class="sticker-embrace">💞🥹💞</div>
+    <h2 style="color: #ffe6f0;">ek het geweet jy hou van my!</h2>
+    <p style="font-size: 1.8rem; margin: 8px 0 0;">💘 14 Februarie 2026 is myne! 💘</p>
+    <img src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif?cid=790b7611n9h6opcmdn3w0pqc9z8f6kef3m36pqxwf22c3rro&ep=v1_gifs_search&rid=giphy.gif&ct=g" 
+         alt="cute valentine bear" 
+         class="success-gif"
+         onerror="this.src='https://media.giphy.com/media/3o7abB06u9bNzA8LC8/giphy.gif?cid=790b7611oe71vmpt2g71a3r5p5g81rqkmheea5v5y5r41pvs&ep=v1_gifs_search&rid=giphy.gif&ct=g'">
+    <p style="font-size: 1.5rem; margin-top: 16px;">💋 my hart is 100% joune</p>
+  </div>
+
+  <script>
+    (function() {
+      "use strict";
+
+      // ----- get elements -----
+      const quizEl = document.getElementById('quizCard');
+      const valentineEl = document.getElementById('valentineCard');
+      const winEl = document.getElementById('winCard');
+
+      const q1 = document.getElementById('answer1');
+      const q2 = document.getElementById('answer2');
+      const q3 = document.getElementById('answer3');
+      const checkBtn = document.getElementById('checkQuizBtn');
+
+      const yesBtn = document.getElementById('yesBtn');
+      const noBtn = document.getElementById('noBtn');
+
+      // ----- CORRECT ANSWERS (exact match) -----
+      const CORRECT = {
+        q1: '6 Julie',
+        q2: 'Messi',
+        q3: 'Kriekie'
+      };
+
+      // ----- floating hearts (always romantic) -----
+      function createFloatingHeart() {
+        const heart = document.createElement('div');
+        heart.className = 'floating-heart';
+        const emojis = ['💖', '💗', '💓', '💘', '💝', '🌸', '🌷', '🥰', '💞'];
+        heart.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+        heart.style.left = Math.random() * 100 + '%';
+        heart.style.fontSize = (Math.floor(Math.random() * 32) + 20) + 'px';
+        heart.style.animationDuration = (Math.random() * 6 + 6) + 's';
+        heart.style.animationDelay = Math.random() * 2 + 's';
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 10000);
+      }
+      // initialise hearts
+      for (let i = 0; i < 14; i++) createFloatingHeart();
+      setInterval(createFloatingHeart, 500);
+
+      // ----- confetti explosion (the GOOD stuff)-----
+      function launchConfettiBurst() {
+        for (let i = 0; i < 100; i++) {
+          const conf = document.createElement('div');
+          conf.className = 'confetti-piece';
+          conf.style.left = Math.random() * 100 + '%';
+         conf.style.background = `hsl(${Math.random() * 50 + 320}, 90%, 70%)`; // pink/purple tones
+          conf.style.width = (Math.random() * 16 + 8) + 'px';
+          conf.style.height = (Math.random() * 24 + 10) + 'px';
+          conf.style.animationDelay = Math.random() * 0.8 + 's';
+          conf.style.animationDuration = (Math.random() * 2 + 2.2) + 's';
+          document.body.appendChild(conf);
+          setTimeout(() => conf.remove(), 5000);
+        }
+      }
+
+      // ----- sweet soundless celebration (no audio needed) -----
+      function celebrateYes() {
+        valentineEl.classList.add('hidden');
+        winEl.classList.remove('hidden');
+        launchConfettiBurst();
+        // extra floating stickers for victory
+        for (let i = 0; i < 20; i++) {
+          setTimeout(() => {
+            const s = document.createElement('div');
+            s.className = 'floating-sticker';
+            s.textContent = ['💕', '💖', '✅', '😘', '🌹', '🎀', '💋'][Math.floor(Math.random() * 7)];
+            s.style.left = Math.random() * 100 + '%';
+            s.style.fontSize = '34px';
+            s.style.animationDuration = '5s';
+            document.body.appendChild(s);
+            setTimeout(() => s.remove(), 6000);
+          }, i * 30);
+        }
+      }
+
+      // ----- CHECK ANSWERS (with nice feedback) -----
+      function handleQuizCheck() {
+        // make sure selections are made
+        if (!q1.value || !q2.value || !q3.value) {
+          alert('🌸 liefling, kies asseblief al die antwoorde 💌');
+          return;
+        }
+
+        if (q1.value === CORRECT.q1 && q2.value === CORRECT.q2 && q3.value === CORRECT.q3) {
+          // correct! move to valentine question
+          quizEl.classList.add('hidden');
+          valentineEl.classList.remove('hidden');
+          // little heart burst when she passes
+          for (let i = 0; i < 12; i++) createFloatingHeart();
+        } else {
+          alert('😢 eish, my skat — probeer weer? jy kan dit doen! 🥺');
+          // gentle shake effect
+          quizEl.style.transform = 'rotate(0.5deg) scale(0.99)';
+          setTimeout(() => quizEl.style.transform = 'rotate(0deg) scale(1)', 180);
+        }
+      }
+
+      checkBtn.addEventListener('click', handleQuizCheck);
+
+      // ----- DODGY NO BUTTON (she can't say no) -----
+      function moveNoButton() {
+        if (!noBtn || noBtn.classList.contains('hidden')) return;
+
+        const maxX = window.innerWidth - noBtn.offsetWidth - 30;
+        const maxY = window.innerHeight - noBtn.offsetHeight - 30;
+        
+        // boundaries soft
+        let x = Math.min(Math.max(10, Math.random() * maxX), maxX);
+        let y = Math.min(Math.max(10, Math.random() * maxY), maxY);
+        
+        noBtn.style.position = 'fixed';
+        noBtn.style.left = x + 'px';
+        noBtn.style.top = y + 'px';
+        noBtn.style.zIndex = '9999';
+        noBtn.style.transition = 'left 0.2s ease, top 0.2s ease';
+        
+        // change text to teasing
+        noBtn.textContent = '😳 nee?';
+        
+        // after short time revert to static inside card (if not pressed)
+        setTimeout(() => {
+          if (noBtn && !noBtn.classList.contains('hidden')) {
+            noBtn.style.position = 'relative';
+            noBtn.style.left = 'auto';
+            noBtn.style.top = 'auto';
+            noBtn.textContent = '🙅🏻‍♀️ NEE';
+          }
+        }, 700);
+      }
+
+      // attach both mouse and touch
+      if (noBtn) {
+        noBtn.addEventListener('mouseenter', moveNoButton);
+        noBtn.addEventListener('touchstart', (e) => {
+          e.preventDefault(); // avoid double tap zoom
+          moveNoButton();
+        });
+      }
+
+      // ----- YES button → ultimate happiness -----
+      yesBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        celebrateYes();
+      });
+
+      // ----- prevent accidental "no" click / but even if click, move to yes? lets add safety: if she catches no, reward anyway ;) 
+      noBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        // if she actually clicks 'NEE' — we treat as YES (she can't escape love)
+        celebrateYes();
+      });
+
+      // ----- reinitialize positions on resize -----
+      window.addEventListener('resize', () => {
+        if (noBtn && noBtn.style.position === 'fixed') {
+          noBtn.style.position = 'relative';
+          noBtn.style.left = 'auto';
+          noBtn.style.top = 'auto';
+          noBtn.textContent = '🙅🏻‍♀️ NEE';
+        }
+      });
+
+      // ----- extra polish: select empty disable button? but we already have alert -----
+
+      // ----- make sure "Gaan aan" also works if user taps return etc -----
+
+      // ----- add tiny extra love: prefill? no, they must choose, but add placeholder for fun
+
+      // ----- also allow easy restart? no needed, but we can do hidden refresh: double tap easter egg? skip
+
+      // ----- manual: if somebody clicks "JA" we done. also if quiz passed we show
+
+      // ----- for debug / coolness: if image fails, backup emoji 
+    })();
+  </script>
+
+  <!-- additional sprinkle: love message on load -->
+  <div style="position: fixed; bottom: 8px; right: 16px; color: rgba(255,255,240,0.7); font-size: 14px; z-index: 999; backdrop-filter: blur(4px); padding: 6px 14px; border-radius: 60px; background: rgba(0,0,0,0.1);">
+    💌 vir my Millie • altyd joune
+  </div>
+
+  <!-- EVERYTHING YOU NEED: no compiler, just pure HTML + CSS + JS love -->
+  <!-- JUST PUBLISH TO NETLIFY / VERCEL / GITHUB PAGES, GET HTTPS LINK 💕 -->
+</body>
+</html>
